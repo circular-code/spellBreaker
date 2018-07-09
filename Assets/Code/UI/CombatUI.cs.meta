@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 27edb82340ed7b74bb3a47d523f70c3b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - combatUIElement: {fileID: 100000, guid: 5938f5e10d5bd0f4a8b03916a2fa349b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

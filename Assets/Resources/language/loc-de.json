@@ -1,0 +1,61 @@
+{
+    "common":
+    {
+        "connecting":"Verbindungsaufbau...",
+        "sending":"Sende Daten...",
+        "back-btn":"Zurück",
+        "next-btn":"Weiter",
+		"confirm-btn":"Bestätigen"        
+    },
+    "errors":
+    {
+        "no connection":"Verbindung fehlgeschlagen.",
+        "database":"Fehlerhafte Datenbankabfrage.",
+        "no user":"Unbekannter Accountname.",
+        "bad pass":"Ungültiges Passwort.",
+        "already logged in":"Account bereits eingeloggt.",
+        "disconnect":"Verbindung zum Server getrennt."
+    },
+    "login:ui":
+    {
+        "username":"Accountnamen eingeben",
+        "password":"Passwort",
+        "login-btn":"Login",
+        "register-btn":"Registrieren"            
+    },
+    "register:ui":
+    {
+        "mail":"E-Mail Addresse",
+        "forname":"Vorname",
+        "surname":"Nachname",
+        "username":"Accountnamen eingeben",
+        "password":"Passwort",
+        "password-rpt":"Passwort wiederholen",
+        "completation":"Bitte alle Felder ausfüllen.",
+        "pass-missmatch":"Passwörter stimmen nicht überein.",
+        "register-success":"Registrierung erfolgreich.",
+        "register-fail":"Registrierung fehlgeschlagen."
+    },
+    "mainmenu:ui":
+    {
+        "emptySlot":"Neuer Charakter",
+        "startMatchmaking":"In den Kampf!",
+        "configureCharacter":"Conf"
+    },
+	"match:ui":
+	{
+		"life":"Leben",
+		"energy":"Energie",
+		"endround":"Runde beenden"
+	},
+    "characters":
+    {
+        "load":"Lade Charakterdaten...",
+        "no characters":"Erstelle deinen ersten Helden.",
+        "level":"Stufe"
+    },
+    "class":
+    {
+        "1":"Krieger"
+    }
+}

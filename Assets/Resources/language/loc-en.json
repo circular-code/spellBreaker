@@ -1,0 +1,61 @@
+{
+    "common":
+    {
+        "connecting":"Connecting...",
+        "sending":"Sending data...",
+        "back-btn":"Back",
+        "next-btn":"Next",
+		"confirm-btn":"Confirm"          
+    },
+    "errors":
+    {
+        "no connection":"Connection error.",
+        "database":"Database error.",
+        "no user":"Unknown username.",
+        "bad pass":"Wrong password.",
+        "already logged in":"User is already logged in.",
+        "disconnect":"Server disconnected."
+    },
+    "login:ui":
+    {
+        "username":"Insert username",
+        "password":"Password",
+        "login-btn":"Login",
+        "register-btn":"Register"        
+    },
+    "register:ui":
+    {
+        "mail":"Mail address",
+        "forname":"Forname",
+        "surname":"Surname",
+        "username":"Insert username",
+        "password":"Password",
+        "password-rpt":"Repeat password",
+        "completation":"Please complete all fields.",
+        "pass-missmatch":"Passwords do not match.",
+        "register-success":"Registration complete.",
+        "register-fail":"Registration failed."
+    },
+    "mainmenu:ui":
+    {
+        "emptySlot":"New character",
+        "startMatchmaking":"To Battle!",
+        "configureCharacter":"Conf"
+    },
+	"match:ui":
+	{
+		"life":"Life",
+		"energy":"Energy",
+		"endround":"End turn"
+	},
+    "characters":
+    {
+        "load":"Loading character data...",
+        "no characters":"Create your first Hero.",
+        "level":"Level"
+    },
+    "class":
+    {
+        "1":"Warrior"
+    }
+}
