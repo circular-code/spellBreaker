@@ -50,7 +50,7 @@ namespace SocketIO
 		public float pingTimeout = 60f;
 
 		public WebSocket socket { get { return ws; } }
-		public string sid { get; set; }
+		public static string sid { get; set; }
 		public bool IsConnected { get { return connected; } }
 
 		#endregion
@@ -190,11 +190,11 @@ namespace SocketIO
 		{
 			if (!handlers.ContainsKey(ev)) {
 				handlers[ev] = new List<Action<SocketIOEvent>>();
-			}
-			handlers[ev].Add(callback);
-		}
+            }
+            handlers[ev].Add(callback);
+        }
 
-		public void Off(string ev, Action<SocketIOEvent> callback)
+        public void Off(string ev, Action<SocketIOEvent> callback)
 		{
 			if (!handlers.ContainsKey(ev)) {
 				#if SOCKET_IO_DEBUG

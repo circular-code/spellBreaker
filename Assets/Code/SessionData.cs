@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class SessionData : MonoBehaviour {
 
+    [SerializeField]
+    private static SessionData s_Instance = null;
     [SerializeField]
     private static string username { get; set; }
     [SerializeField]
     private static int user_id { get; set; }
     [SerializeField]
     private static string socket_id { get; set; }
+    public string debug_SocketId;
     [SerializeField]
     private static Match match;
     public Match debugMatch;

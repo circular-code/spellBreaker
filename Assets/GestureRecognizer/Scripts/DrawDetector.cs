@@ -80,10 +80,13 @@ namespace GestureRecognizer
                 recognizeCounter += Time.deltaTime;
                 if(recognizeCounter >= recognizeDelay)
                 {
-                    foreach(PointerEventData data in recognizeData)
+                    List<PointerEventData> pointerData = new List<PointerEventData>();
+
+                    foreach (PointerEventData data in recognizeData)
                     {
-                        StartCoroutine(OnEndDragCoroutine(data));
+                        pointerData.Add(data);
                     }
+                    StartCoroutine(OnEndDragCoroutine(pointerData));
                     startRecognize = false;
                     recognizeCounter = 0;
                     recognizeData.Clear();
@@ -169,7 +172,7 @@ namespace GestureRecognizer
 
             recognized = false;
             clearCounter = 0;
-            Debug.Log("OnBeginDrag");            
+            //Debug.Log("OnBeginDrag");            
 
             if (Lean.Touch.LeanTouch.Fingers.Count > 0 || Input.GetMouseButton(0))
             {
@@ -199,7 +202,7 @@ namespace GestureRecognizer
 
         public void OnDrag(PointerEventData eventData)
         {
-            Debug.Log("OnDrag");
+            //Debug.Log("OnDrag");
             startRecognize = false;
             recognizeCounter = 0;
 
@@ -222,9 +225,9 @@ namespace GestureRecognizer
             //StartCoroutine(OnEndDragCoroutine(eventData));
         }
 
-        IEnumerator OnEndDragCoroutine(PointerEventData eventData)
+        IEnumerator OnEndDragCoroutine(List<PointerEventData> eventData)
         {
-            Debug.Log("OnEndDragRoutine");
+            //Debug.Log("OnEndDragRoutine");
 
             // zeichnet eine letzte linie an der mausposition
             // deaktiviert da erkennung verzögert wird

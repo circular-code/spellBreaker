@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6f0a6668144c44e9f4e333d712b97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug_SocketId: 
   debugMatch:
     matchID: 
     playerDraw: 
@@ -555,8 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e01adaff9523543bc2c06daa17c55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatUIElement: {fileID: 1506948317845622, guid: 85e5a1854382a904aa4bddeef8455f68,
+  combatUIElementPrefab: {fileID: 1506948317845622, guid: 85e5a1854382a904aa4bddeef8455f68,
     type: 2}
+  combatUIElement: {fileID: 0}
 --- !u!114 &114712065525664280
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -14,6 +14,10 @@ public class GestureHandler : MonoBehaviour {
     private DrawDetector detector;
     [SerializeField]
     private Recognizer recognizer;
+    [SerializeField]
+    private GesturePattern defendSpell;
+    [SerializeField]
+    private GesturePattern attackSpell;
 
     [SerializeField]
     private bool testMode;
@@ -63,10 +67,20 @@ public class GestureHandler : MonoBehaviour {
 
             if (socket)
             {
-                JSONObject dataObj = new JSONObject(values.SaveToString());
-                //Debug.Log(dataObj);
+                if (result.gesture == attackSpell)
+                {
+                    JSONObject dataObj = new JSONObject(values.SaveToString());
+                    //Debug.Log(dataObj);
 
-                socket.Emit("player:cast:spell", dataObj);
+                    socket.Emit("player:cast:spell", dataObj);
+                } else if(result.gesture == defendSpell)
+                {
+                    Debug.Log("defend");
+                    JSONObject dataObj = new JSONObject(values.SaveToString());
+                    //Debug.Log(dataObj);
+
+                    socket.Emit("player:defend:spell", dataObj);
+                }                
             }
         }        
     }    

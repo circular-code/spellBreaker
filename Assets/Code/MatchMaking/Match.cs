@@ -72,7 +72,7 @@ public class Match {
     #endregion
 
     public Player GetPlayerBySocketID(string _socketId)
-    {
+    {        
         return players.Find(x => x.SocketID == _socketId);
     }
 }

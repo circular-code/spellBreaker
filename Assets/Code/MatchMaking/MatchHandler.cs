@@ -18,6 +18,29 @@ public class MatchHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        socket.On("match:joined", (SocketIOEvent e) =>
+        {
+            Debug.Log("[SocketIO] LFM Request successfull.");
+            StartCoroutine(InitializeMatch(e.data));
+            socket.On("endMatch", (SocketIOEvent ev) =>
+            {
+                if (SceneManager.GetActiveScene().buildIndex != 1)
+                {
+                    socket.Off("spell:result", (SocketIOEvent evnt) =>
+                    {
+                        SpellResult(evnt.data);
+                    });
+                    socket.Off("spell:pending", (SocketIOEvent evnt) =>
+                    {
+                        SpellPending(evnt.data);
+                    }); socket.Off("spell:blocked", (SocketIOEvent evnt) =>
+                    {
+                        SpellBlocked(evnt.data);
+                    });
+                    SceneManager.LoadScene(1);
+                }
+            });
+        });
     }
 	
 	// Update is called once per frame
@@ -27,23 +50,21 @@ public class MatchHandler : MonoBehaviour {
 
     public void RegisterForMatchMaking()
     {
-        
-        socket.Emit("register:for:match");
-        socket.On("match:joined", (SocketIOEvent e) =>
-        {
-            Debug.Log("[SocketIO] LFM Request successfull.");
-            StartCoroutine(InitializeMatch(e.data));
-
-        });        
-    }
+        Debug.Log("registformatchmacking()");
+        socket.Emit("register:for:match");            
+    }    
 
     IEnumerator InitializeMatch(JSONObject data)
     {
-        loadMatch = SceneManager.LoadSceneAsync(1);
+        loadMatch = SceneManager.LoadSceneAsync(2);
         while (!loadMatch.isDone)
         {
             Debug.Log("loading scene");
             yield return loadMatch;
+        }
+        if(loadMatch.isDone)
+        {
+            StopCoroutine(InitializeMatch(data));
         }
         Match match = new Match(LocalizationHelper.StripQuotationsFromJson(data[0]), LocalizationHelper.StripQuotationsFromJson(data[1]), LocalizationHelper.StripQuotationsFromJson(data[2]["socket_id"]));
         Debug.Log(match);
@@ -55,7 +76,7 @@ public class MatchHandler : MonoBehaviour {
 
         // Init UI Elements
         uiHandler.enabled = true;
-        UIHandler.InitCombatUI(uiHandler.CombatUIElement, uiHandler);
+        UIHandler.InitCombatUI(uiHandler.CombatUIElementPrefab, uiHandler);
 
         // Init Player objects
         InitPlayers(LocalizationHelper.StripQuotationsFromJson(data["opponentPlayer"]["socket_id"]));
@@ -64,6 +85,15 @@ public class MatchHandler : MonoBehaviour {
         {
             SpellResult(e.data);
         });
+        socket.On("spell:blocked", (SocketIOEvent e) =>
+        {
+            SpellBlocked(e.data);
+        });
+        socket.On("spell:pending", (SocketIOEvent e) =>
+        {
+            SpellPending(e.data);
+        });
+        socket.Off("match:joined", (SocketIOEvent e) => { });
     }
 
     void InitPlayers(string _remotePlayerId)
@@ -71,7 +101,7 @@ public class MatchHandler : MonoBehaviour {
         GameObject localPlayerObj = Instantiate(playerPrefab);
         localPlayerObj.name = "LocalPlayer";
         Player localPlayer = localPlayerObj.AddComponent<Player>();
-        localPlayer.SocketID = SessionData.SocketID;
+        localPlayer.SocketID = SocketIOComponent.sid;
         localPlayer.Health = 100;
         UIHandler.UpdateLocalPlayerHealth(localPlayer.Health);
         //GameObject.Find("LocalHP").GetComponent<Text>().text = "Your HP: " + localPlayer.Health;
@@ -87,26 +117,43 @@ public class MatchHandler : MonoBehaviour {
         SessionData.Match.Players.Add(remotePlayer);
     }
 
+    void SpellPending(JSONObject data)
+    {
+        CombatUI.AddIncomingSpell();
+    }
+
+    void SpellBlocked(JSONObject data)
+    {
+        CombatUI.DeleteIncomingSpell();
+    }
+
     void SpellResult(JSONObject data)
     {
         if(data[0] == true)
-        {
-            Debug.Log(SessionData.Match.GetPlayerBySocketID(LocalizationHelper.StripQuotationsFromJson(data["result"]["socket_id"])));
-            Player pl = SessionData.Match.GetPlayerBySocketID(LocalizationHelper.StripQuotationsFromJson(data["result"]["socket_id"]));
+        { 
+            if(Convert.ToInt16(LocalizationHelper.StripQuotationsFromJson(data["defenderHealth"])) > 0)
+            {
+                Debug.Log(LocalizationHelper.StripQuotationsFromJson(data["defenderId"]));
+                //Debug.Log(SessionData.Match.GetPlayerBySocketID(LocalizationHelper.StripQuotationsFromJson(data["result"]["socket_id"])));
+                Player pl = SessionData.Match.GetPlayerBySocketID(LocalizationHelper.StripQuotationsFromJson(data["defenderId"]));
 
 
-            /*
-             * NUR DEBUG LÖSUNG
-             * !!!DURCH GLOBALEN UI HANDLER UMSCHREIBEN!!!! 
-             * 
-             */
-            pl.Health = Convert.ToInt16(LocalizationHelper.StripQuotationsFromJson(data["result"]["health"]));
-            if(pl.SocketID == SessionData.Match.LocalPlayerID)
-            {
-                GameObject.Find("LocalHP").GetComponent<Text>().text = "Your HP: " + pl.Health;
-            } else
-            {
-                GameObject.Find("EnemyHP").GetComponent<Text>().text = "Enemy HP: " + pl.Health;
+                /*
+                 * NUR DEBUG LÖSUNG
+                 * !!!DURCH GLOBALEN UI HANDLER UMSCHREIBEN!!!! 
+                 * 
+                 */
+                pl.Health = Convert.ToInt16(LocalizationHelper.StripQuotationsFromJson(data["defenderHealth"]));
+                if (pl.SocketID == SessionData.Match.LocalPlayerID)
+                {
+                    GameObject.Find("LocalHP").GetComponent<Text>().text = "Your HP: " + pl.Health;
+                }
+                else
+                {
+                    GameObject.Find("EnemyHP").GetComponent<Text>().text = "Enemy HP: " + pl.Health;
+                }
+
+                CombatUI.DeleteIncomingSpell();
             }
         } else
         {

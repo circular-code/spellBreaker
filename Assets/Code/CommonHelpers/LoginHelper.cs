@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SocketIO;
 using SocketIO.Handler;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LoginHelper
 {
@@ -76,7 +77,7 @@ namespace LoginHelper
             SessionData.UserID = user_id;
             //Debug.Log(SessionData.getUserID());
 
-            GameObject.Find("LoginMask").SetActive(false);
+            /*GameObject.Find("LoginMask").SetActive(false);
             GameObject[] objs = Resources.FindObjectsOfTypeAll<GameObject>();
             foreach(GameObject go in objs)
             {
@@ -84,7 +85,8 @@ namespace LoginHelper
                 {
                     go.SetActive(true);
                 }
-            }
+            }*/
+            SceneManager.LoadScene(1);
 
             handler.enabled = false;
             base.OnSuccess(e);
@@ -92,6 +94,7 @@ namespace LoginHelper
         
         public void OnUserLogin(SocketIOEvent e)
         {
+            SessionData.SocketID = SocketIOComponent.sid;
             Debug.Log("[Socket OnUserLogin]: " + e);
             string data = LocalizationHelper.StripQuotationsFromJson(e.data[0]);
             if(data != "bad pass")

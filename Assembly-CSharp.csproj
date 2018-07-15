@@ -122,6 +122,8 @@
     <Compile Include="Assets\LeanTouch\Scripts\LeanGesture.cs" />
     <Compile Include="Assets\LeanTouch\Scripts\LeanSnapshot.cs" />
     <Compile Include="Assets\LeanTouch\Scripts\LeanTouch.cs" />
+    <Compile Include="Assets\LogicHandler.cs" />
+    <Compile Include="Assets\MatchMakingButton.cs" />
     <Compile Include="Assets\PDollar\Scripts\Demo.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Geometry.cs" />
     <Compile Include="Assets\PDollar\Scripts\PDollarGestureRecognizer\Gesture.cs" />

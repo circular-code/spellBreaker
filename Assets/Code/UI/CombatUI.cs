@@ -9,6 +9,10 @@ public class CombatUI : MonoBehaviour {
     private Text localPlayerHealth;
     [SerializeField]
     private Text opponentPlayerHealth;
+    [SerializeField]
+    private GameObject incomingSpellPrefab;
+    [SerializeField]
+    private GameObject incomingSpellHolder;
 
     public Text LocalPlayerHealth
     {
@@ -36,6 +40,32 @@ public class CombatUI : MonoBehaviour {
         }
     }
 
+    public GameObject IncomingSpellHolder
+    {
+        get
+        {
+            return incomingSpellHolder;
+        }
+
+        set
+        {
+            incomingSpellHolder = value;
+        }
+    }
+
+    public GameObject IncomingSpellPrefab
+    {
+        get
+        {
+            return incomingSpellPrefab;
+        }
+
+        set
+        {
+            incomingSpellPrefab = value;
+        }
+    }
+
     public static void Init(GameObject _prefab, UIHandler _handler)
     {
         GameObject go = Instantiate(_prefab, Camera.main.transform.GetChild(0));
@@ -43,4 +73,17 @@ public class CombatUI : MonoBehaviour {
         _handler.CombatUIElement = go;
         UIHandler.CombatUI = go.GetComponent<CombatUI>();
     }    
+
+    public static void AddIncomingSpell()
+    {
+        Instantiate(UIHandler.CombatUI.IncomingSpellPrefab, UIHandler.CombatUI.IncomingSpellHolder.transform);
+    }
+
+    public static void DeleteIncomingSpell()
+    {
+        if(UIHandler.CombatUI.IncomingSpellHolder.transform.childCount > 0)
+        {
+            Destroy(UIHandler.CombatUI.IncomingSpellHolder.transform.GetChild(0).gameObject);
+        }
+    }
 }

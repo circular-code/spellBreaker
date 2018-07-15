@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIHandler : MonoBehaviour {
 
     [SerializeField]
+    private GameObject combatUIElementPrefab;
+    [SerializeField]
     private GameObject combatUIElement;
     [SerializeField]
     private static CombatUI combatUI;
@@ -33,6 +35,14 @@ public class UIHandler : MonoBehaviour {
         set
         {
             combatUIElement = value;
+        }
+    }
+
+    public GameObject CombatUIElementPrefab
+    {
+        get
+        {
+            return combatUIElementPrefab;
         }
     }
 

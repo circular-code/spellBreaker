@@ -203,8 +203,6 @@ public class LoginHandler : MonoBehaviour {
             //connectionTries = 0;
             Debug.Log("Connection to Server established.");
 
-            SessionData.SocketID = socket.sid;
-
             Dictionary<string, string> data = new Dictionary<string, string>();
 
             //RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -236,7 +234,7 @@ public class LoginHandler : MonoBehaviour {
         socket.On("close", );
         */
 
-    }
+    }    
 
     #region Delegate Methods
 

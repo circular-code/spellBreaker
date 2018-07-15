@@ -1,7 +1,8 @@
-WindowsStandalone
+Android
 PlayerPath?
-D:/Builds/Spellbreaker/0.1/0.1.exe
+D:/Builds/Spellbreaker/APKs/0.1.apk
 SceneListBegin?
+Assets/Scenes/Login.unity
 Assets/Scenes/Menu.unity
 Assets/Scenes/MatchScenes/match_01.unity
 SceneListEnd?
@@ -88,7 +89,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 e1a312172407d9d9f3690722d2c9ac73 Assembly-CSharp.dll:Lean.Touch.LeanCanvasArrow
 6c15db20cfd69979254593ffa5037d44 Assembly-CSharp.dll:Lean.Touch.LeanDestroy
-277255fe760b529dee65df80b289c781 Assembly-CSharp.dll:.CombatUI
+6b95a80bfe0824164478f69ad162f89c Assembly-CSharp.dll:.CombatUI
 174b8d77c68295a96376e8e9d29fd649 Assembly-CSharp.dll:.LoginHandler
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -131,8 +132,9 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 3623e1a5ab0d20f12d4c35823ff28e03 Assembly-CSharp.dll:GestureRecognizer.UILineRenderer
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Lean.Touch.LeanOpenUrl
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DontDestroyHandler
-4b8c16c739ad21bdd887d1f7476e5644 Assembly-CSharp.dll:.SessionData
+7ef77ac1b9ca8ebfa303c2362774fbe8 Assembly-CSharp.dll:.SessionData
 548c6364d9081c2ff45481e12d6106e8 Assembly-CSharp.dll:Lean.Touch.LeanRotate
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MatchMakingButton
 962729ffcb834203af5785213b15fb82 Assembly-CSharp.dll:.BtnTestSpell
 56e8379e2e8475f8af18ab6e3ad56c22 Assembly-CSharp.dll:SocketIO.SocketIOComponent
 9f8532f8365e8009ca299486a31171e4 Assembly-CSharp.dll:.Demo
@@ -161,13 +163,14 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 29df9c04438d15b5b4fdcf4eb9a48823 Assembly-CSharp.dll:Lean.Touch.LeanSelectable
-43d2c5ef2731a746df9c20676572d861 Assembly-CSharp.dll:.UIHandler
+909cb7bb600ec6870de95b7273aa8c8c Assembly-CSharp.dll:.UIHandler
 0877da10ea23774170ed25e0515fe926 Assembly-CSharp.dll:GestureRecognizer.Recognizer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LogicHandler
 9e0ef5bf862444b5dc48b5a99554ce7c UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
-fa4908f155183bbd2ae1cf3bc402bdbf Assembly-CSharp.dll:.GestureHandler
+1e437c4c14a333444146c3280fdc223b Assembly-CSharp.dll:.GestureHandler
 7def5fe351fb82fda3891095d17de420 Assembly-CSharp.dll:Lean.Touch.LeanScale
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
